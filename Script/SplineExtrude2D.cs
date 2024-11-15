@@ -23,12 +23,12 @@ namespace UnityEngine.Splines
         [SerializeField, Tooltip("The maximum number of times per-second that the mesh will be rebuilt.")]
         int m_RebuildFrequency = 30;
 
-        [SerializeField, Tooltip("Automatically update any Mesh, Box, or Sphere collider components when the mesh is extruded.")]
+        [SerializeField, Tooltip("Automatically update any Mesh, Box, or Circle collider components when the mesh is extruded.")]
 #pragma warning disable 414
         bool m_UpdateColliders = true;
 #pragma warning restore 414
 
-        [SerializeField, Tooltip("The number of edge loops that comprise the length of one unit of the mesh. The " +
+        [SerializeField, Tooltip("The number of rects that comprise the length of one unit of the mesh. The " +
              "total number of sections is equal to \"Spline.GetLength() * segmentsPerUnit\".")]
         float m_SegmentsPerUnit = 4;
 
@@ -66,14 +66,14 @@ namespace UnityEngine.Splines
             set => m_RebuildFrequency = Mathf.Max(value, 1);
         }
 
-        /// <summary>How many edge loops comprise the one unit length of the mesh.</summary>
+        /// <summary>How many rects comprise the one unit length of the mesh.</summary>
         public float SegmentsPerUnit
         {
             get => m_SegmentsPerUnit;
             set => m_SegmentsPerUnit = Mathf.Max(value, .0001f);
         }
 
-        /// <summary>The radius of the extruded mesh.</summary>
+        /// <summary>The width of the extruded mesh.</summary>
         public float Width
         {
             get => m_Width;
@@ -147,7 +147,7 @@ namespace UnityEngine.Splines
             return isNull;
         }
 
-        internal static readonly string k_EmptyMeshFilterError = "SplineExtrude.createMeshInstance is disabled," +
+        internal static readonly string k_EmptyMeshFilterError = "SplineExtrude2D.createMeshInstance is disabled," +
                                                                          " but there is no valid mesh assigned. " +
                                                                          "Please create or assign a writable mesh asset.";
         bool IsNullOrEmptyMeshFilter()
